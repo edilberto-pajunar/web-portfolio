@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { useTerminalStore } from "../store/useTerminalStore";
 import { useBrowserStore } from "../store/useBrowserStore";
+import { usePhotosStore } from "../store/usePhotosStore";
 
 export default function NavBar() {
   const { setIsOpen } = useTerminalStore();
   const { setIsOpen: setBrowserOpen } = useBrowserStore();
+  const { setIsOpen: setPhotosOpen } = usePhotosStore();
 
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
@@ -32,13 +34,18 @@ export default function NavBar() {
             className="hover:scale-110 transition-transform duration-200"
           />
         </button>
-        <Image
-          src="/icons/photos.svg"
-          alt="Photos"
-          width={48}
-          height={48}
-          className="hover:scale-110 transition-transform duration-200"
-        />
+        <button
+          onClick={() => setPhotosOpen(true)}
+          className="focus:outline-none"
+        >
+          <Image
+            src="/icons/photos.svg"
+            alt="Photos"
+            width={48}
+            height={48}
+            className="hover:scale-110 transition-transform duration-200"
+          />
+        </button>
       </div>
     </div>
   );
