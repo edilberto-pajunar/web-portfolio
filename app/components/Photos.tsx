@@ -1,9 +1,11 @@
 "use client";
 
 import { usePhotosStore } from "../store/usePhotosStore";
+import { useWindowManager, WindowType } from "../store/useWindowManager";
 import { Photo } from "../interface/Photo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import TabOption from "./TabOption";
 
 const samplePhotos: Photo[] = [
   {
@@ -58,27 +60,28 @@ const samplePhotos: Photo[] = [
 
 export default function Photos() {
   const { isOpen, setIsOpen } = usePhotosStore();
+  const { bringToFront, getZIndex } = useWindowManager();
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      bringToFront(WindowType.PHOTOS);
+    }
+  }, [isOpen, bringToFront]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/20">
-      <div className="w-full max-w-6xl h-[700px] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-2xl">
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600"
-            />
-            <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600" />
-            <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600" />
-          </div>
-          <span className="text-gray-900 dark:text-white text-sm font-semibold">
-            Photos
-          </span>
-          <div className="w-12" />
-        </div>
+    <div
+      className="fixed inset-0 flex items-center justify-center p-4 bg-black/20"
+      style={{ zIndex: getZIndex(WindowType.PHOTOS) }}
+      onClick={() => bringToFront(WindowType.PHOTOS)}
+    >
+      <div
+        className="w-full max-w-6xl h-[700px] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <TabOption onClose={() => setIsOpen(false)} title="Photos" />
 
         {!selectedPhoto ? (
           <div className="flex-1 overflow-y-auto p-6">

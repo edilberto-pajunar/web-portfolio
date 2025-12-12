@@ -1,12 +1,21 @@
 "use client";
 
 import { useTerminalStore } from "../store/useTerminalStore";
+import { useWindowManager, WindowType } from "../store/useWindowManager";
 import { useEffect, useRef, useState } from "react";
+import TabOption from "./TabOption";
 
 export default function TerminalCard() {
   const { isOpen, setIsOpen, history, setHistory } = useTerminalStore();
+  const { bringToFront, getZIndex } = useWindowManager();
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      bringToFront(WindowType.TERMINAL);
+    }
+  }, [isOpen, bringToFront]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -26,20 +35,16 @@ export default function TerminalCard() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/20">
-      <div className="w-full max-w-3xl h-[500px] flex flex-col bg-gray-900/95 backdrop-blur-xl rounded-lg shadow-2xl border border-gray-700">
-        <div className="flex items-center justify-between px-4 py-2 bg-gray-800/90 rounded-t-lg border-b border-gray-700">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600"
-            />
-            <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600" />
-            <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600" />
-          </div>
-          <span className="text-gray-400 text-sm font-medium">Terminal</span>
-          <div className="w-12" />
-        </div>
+    <div
+      className="fixed inset-0 flex items-center justify-center p-4 bg-black/20"
+      style={{ zIndex: getZIndex(WindowType.TERMINAL) }}
+      onClick={() => bringToFront(WindowType.TERMINAL)}
+    >
+      <div
+        className="w-full max-w-3xl h-[500px] flex flex-col bg-gray-900/95 backdrop-blur-xl rounded-lg shadow-2xl border border-gray-700"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <TabOption onClose={() => setIsOpen(false)} title="Terminal" />
 
         <div
           ref={scrollRef}

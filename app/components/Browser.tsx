@@ -1,9 +1,12 @@
 "use client";
 
 import { useBrowserStore } from "../store/useBrowserStore";
+import { useWindowManager, WindowType } from "../store/useWindowManager";
+import { useEffect } from "react";
 import Image from "next/image";
 import PersonalProfile from "./PersonalProfile";
 import WorkProfile from "./WorkProfile";
+import TabOption from "./TabOption";
 
 const profiles = [
   { id: "personal", name: "Personal", color: "bg-blue-500", icon: "👤" },
@@ -12,49 +15,62 @@ const profiles = [
 ];
 
 export default function Browser() {
-  const { isOpen, setIsOpen, selectedProfile, setSelectedProfile } =
-    useBrowserStore();
+  const {
+    isOpen,
+    setIsOpen,
+    selectedProfile,
+    setSelectedProfile,
+    setActiveTab,
+    activeTab,
+    tabs,
+    addTab,
+    closeTab,
+  } = useBrowserStore();
+  const { bringToFront, getZIndex } = useWindowManager();
+
+  useEffect(() => {
+    if (isOpen) {
+      bringToFront(WindowType.BROWSER);
+    }
+  }, [isOpen, bringToFront]);
+
+  const handleAddTab = () => {
+    setSelectedProfile(null);
+    setActiveTab(null);
+  };
+
+  const handleTabClick = (profileId: string) => {
+    setActiveTab(profileId);
+    setSelectedProfile(profileId);
+  };
+
+  const handleTabClose = (profileId: string) => {
+    closeTab(profileId);
+  };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/20">
-      <div className="w-full max-w-5xl h-[700px] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-300 dark:border-gray-700">
-        <div className="flex items-center justify-between px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-t-lg border-b border-gray-300 dark:border-gray-700">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600"
-            />
-            <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600" />
-            <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600" />
-          </div>
-          <span className="text-gray-700 dark:text-gray-300 text-sm font-medium">
-            Brave Browser
-          </span>
-          <div className="w-12" />
-        </div>
+    <div
+      className="fixed inset-0 flex items-center justify-center p-4 bg-black/20"
+      style={{ zIndex: getZIndex(WindowType.BROWSER) }}
+      onClick={() => bringToFront(WindowType.BROWSER)}
+    >
+      <div
+        className="w-full max-w-5xl h-[700px] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-gray-300 dark:border-gray-700"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <TabOption
+          onClose={() => setIsOpen(false)}
+          title="Brave Browser"
+          tabs={tabs}
+          onTabClicked={handleTabClick}
+          onTabClose={handleTabClose}
+          onAddTab={handleAddTab}
+          activeTab={activeTab}
+        />
 
-        <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 dark:bg-gray-850 border-b border-gray-200 dark:border-gray-700">
-          {selectedProfile && (
-            <button
-              onClick={() => setSelectedProfile(null)}
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              ← Back
-            </button>
-          )}
-          <div className="flex items-center gap-2 flex-1 bg-white dark:bg-gray-800 rounded-lg px-3 py-1.5 border border-gray-300 dark:border-gray-600">
-            <Image src="/icons/brave.svg" alt="Brave" width={16} height={16} />
-            <span className="text-sm text-gray-500">
-              {selectedProfile
-                ? profiles.find((p) => p.id === selectedProfile)?.name
-                : "New Tab"}
-            </span>
-          </div>
-        </div>
-
-        <div className="flex-1 overflow-hidden flex bg-gradient-to-br from-orange-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="flex-1 overflow-hidden flex bg-linear-to-br from-orange-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
           {!selectedProfile ? (
             <div className="max-w-2xl mx-auto p-8 text-center flex items-center justify-center w-full">
               <div>
@@ -78,7 +94,10 @@ export default function Browser() {
                   {profiles.map((profile) => (
                     <button
                       key={profile.id}
-                      onClick={() => setSelectedProfile(profile.id)}
+                      onClick={() => {
+                        setSelectedProfile(profile.id);
+                        addTab(profile.id);
+                      }}
                       className="group p-6 bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-200 dark:border-gray-700 hover:border-orange-500 dark:hover:border-orange-500 transition-all hover:shadow-xl hover:scale-105"
                     >
                       <div
