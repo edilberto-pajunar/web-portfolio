@@ -12,12 +12,13 @@ export default function PersonalProfile() {
 
           <div className="px-8 pb-8">
             <div className="flex items-end -mt-16 mb-6">
-              <div className=" w-32 h-32 bg-linear-to-br from-blue-400 to-purple-600 rounded-2xl flex items-center justify-center text-6xl border-4 border-white dark:border-gray-800 shadow-xl">
+              <div className="w-32 h-32 bg-linear-to-br from-blue-400 to-purple-600 rounded-2xl flex items-center justify-center  border-white dark:border-gray-800 shadow-xl overflow-hidden">
                 <Image
                   src={profileData.profilePicture}
                   alt={profileData.name}
                   width={128}
-                  height={100}
+                  height={128}
+                  className="w-full h-full object-cover rounded-2xl"
                 />
               </div>
               <div className="ml-6 flex-1 mt-20">
@@ -131,7 +132,7 @@ export default function PersonalProfile() {
               {profileData.skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all text-center"
+                  className="px-4 py-2 bg-linear-to-r from-blue-500 to-purple-600 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all text-center"
                 >
                   {skill}
                 </span>

@@ -6,62 +6,14 @@ import { Photo } from "../interface/Photo";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import TabOption from "./TabOption";
-
-const samplePhotos: Photo[] = [
-  {
-    id: "1",
-    url: "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba",
-    title: "Mountain Vista",
-    description: "Breathtaking mountain landscape at sunset",
-    date: "Dec 10, 2025",
-    album: "Nature",
-  },
-  {
-    id: "2",
-    url: "https://images.unsplash.com/photo-1682687220795-796d3f6f7000",
-    title: "Ocean Waves",
-    description: "Peaceful ocean view with rolling waves",
-    date: "Dec 8, 2025",
-    album: "Nature",
-  },
-  {
-    id: "3",
-    url: "https://images.unsplash.com/photo-1682687221038-404cb8830901",
-    title: "City Lights",
-    description: "Urban skyline illuminated at night",
-    date: "Dec 5, 2025",
-    album: "Urban",
-  },
-  {
-    id: "4",
-    url: "https://images.unsplash.com/photo-1682687221363-72efc93e4d77",
-    title: "Forest Path",
-    description: "Serene walking trail through the woods",
-    date: "Dec 3, 2025",
-    album: "Nature",
-  },
-  {
-    id: "5",
-    url: "https://images.unsplash.com/photo-1682687221080-5cb261c645cb",
-    title: "Desert Sunset",
-    description: "Golden hour in the desert dunes",
-    date: "Dec 1, 2025",
-    album: "Travel",
-  },
-  {
-    id: "6",
-    url: "https://images.unsplash.com/photo-1682687218147-9806132dc697",
-    title: "Winter Scene",
-    description: "Snow-covered landscape in winter",
-    date: "Nov 28, 2025",
-    album: "Seasons",
-  },
-];
+import { projects } from "../interface/Project";
 
 export default function Photos() {
   const { isOpen, setIsOpen } = usePhotosStore();
   const { bringToFront, getZIndex } = useWindowManager();
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+  const allPhotos = projects.flatMap((project) => project.images);
 
   useEffect(() => {
     if (isOpen) {
@@ -90,27 +42,27 @@ export default function Photos() {
                 All Photos
               </h2>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                {samplePhotos.length} items
+                {allPhotos.length} items
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-1">
-              {samplePhotos.map((photo) => (
+            <div className="grid grid-cols-4 gap-0.5">
+              {allPhotos.map((photo: string, index: number) => (
                 <button
-                  key={photo.id}
-                  onClick={() => setSelectedPhoto(photo)}
-                  className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800 hover:opacity-90 transition-opacity group"
+                  key={`${photo}-${index}`}
+                  onClick={() => {}}
+                  className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800 hover:opacity-90 transition-opacity group border border-gray-200 dark:border-gray-700"
                 >
                   <Image
-                    src={photo.url}
-                    alt={photo.title}
+                    src={photo}
+                    alt={photo}
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <p className="text-white text-sm font-medium truncate">
-                        {photo.title}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute bottom-0 left-0 right-0 p-2">
+                      <p className="text-white text-xs font-medium truncate">
+                        Photo {index + 1}
                       </p>
                     </div>
                   </div>

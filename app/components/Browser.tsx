@@ -7,11 +7,12 @@ import Image from "next/image";
 import PersonalProfile from "./PersonalProfile";
 import WorkProfile from "./WorkProfile";
 import TabOption from "./TabOption";
+import Projects from "./Projects";
 
 const profiles = [
   { id: "personal", name: "Personal", color: "bg-blue-500", icon: "👤" },
   { id: "work", name: "Work", color: "bg-purple-500", icon: "💼" },
-  { id: "guest", name: "Guest", color: "bg-gray-500", icon: "🌐" },
+  { id: "projects", name: "Projects", color: "bg-gray-500", icon: "🌐" },
 ];
 
 export default function Browser() {
@@ -127,19 +128,7 @@ export default function Browser() {
           ) : selectedProfile === "work" ? (
             <WorkProfile />
           ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl mb-4">
-                  {profiles.find((p) => p.id === selectedProfile)?.icon}
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
-                  {profiles.find((p) => p.id === selectedProfile)?.name} Profile
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Browser content will appear here
-                </p>
-              </div>
-            </div>
+            <Projects />
           )}
         </div>
       </div>

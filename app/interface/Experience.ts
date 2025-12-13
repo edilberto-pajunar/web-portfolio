@@ -4,4 +4,6 @@ export interface Experience {
   location: string;
   period: string;
   description: string;
+  achievements: string[];
+  type: "full-time" | "part-time" | "freelance" | "internship";
 }
