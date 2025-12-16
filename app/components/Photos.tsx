@@ -25,33 +25,34 @@ export default function Photos() {
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center p-4 bg-black/20"
+      className="fixed inset-0 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
       style={{ zIndex: getZIndex(WindowType.PHOTOS) }}
       onClick={() => bringToFront(WindowType.PHOTOS)}
     >
       <div
-        className="w-full max-w-6xl h-[700px] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-2xl"
+        className="w-full max-w-6xl h-[720px] flex flex-col bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <TabOption onClose={() => setIsOpen(false)} title="Photos" />
 
         {!selectedPhoto ? (
-          <div className="flex-1 overflow-y-auto p-6">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                All Photos
+          <div className="flex-1 overflow-y-auto p-8">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
+                <span className="text-4xl">📸</span>
+                <span>All Photos</span>
               </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-base text-gray-600 dark:text-gray-400 ml-14">
                 {allPhotos.length} items
               </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-0.5">
+            <div className="grid grid-cols-4 gap-3">
               {allPhotos.map((photo: string, index: number) => (
                 <button
                   key={`${photo}-${index}`}
                   onClick={() => {}}
-                  className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800 hover:opacity-90 transition-opacity group border border-gray-200 dark:border-gray-700"
+                  className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800 hover:scale-[1.02] transition-transform group rounded-2xl border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 shadow-sm"
                 >
                   <Image
                     src={photo}
@@ -59,9 +60,9 @@ export default function Photos() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute bottom-0 left-0 right-0 p-2">
-                      <p className="text-white text-xs font-medium truncate">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                    <div className="w-full p-3 bg-black/80">
+                      <p className="text-white text-sm font-semibold truncate">
                         Photo {index + 1}
                       </p>
                     </div>
@@ -72,15 +73,16 @@ export default function Photos() {
           </div>
         ) : (
           <div className="flex-1 flex flex-col overflow-hidden">
-            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-3">
+            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center gap-4 bg-gray-50 dark:bg-gray-800">
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="text-blue-500 hover:text-blue-600 font-medium text-sm"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl transition-colors flex items-center gap-2"
               >
-                ← Back
+                <span>←</span>
+                <span>Back</span>
               </button>
-              <span className="text-gray-400 text-sm">|</span>
-              <span className="text-gray-900 dark:text-white font-medium text-sm">
+              <div className="h-6 w-px bg-gray-300 dark:bg-gray-600"></div>
+              <span className="text-gray-900 dark:text-white font-bold text-base">
                 {selectedPhoto.title}
               </span>
             </div>
@@ -91,33 +93,35 @@ export default function Photos() {
                   src={selectedPhoto.url}
                   alt={selectedPhoto.title}
                   fill
-                  className="object-contain rounded-lg shadow-2xl"
+                  className="object-contain rounded-2xl shadow-2xl"
                 />
               </div>
 
               <div className="w-80 border-l border-gray-200 dark:border-gray-700 p-6 overflow-y-auto bg-white dark:bg-gray-900">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  {selectedPhoto.title}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                  {selectedPhoto.description}
-                </p>
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    {selectedPhoto.title}
+                  </h3>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {selectedPhoto.description}
+                  </p>
+                </div>
 
-                <div className="space-y-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <div>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wide mb-1">
+                <div className="space-y-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
+                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
                       Date
                     </p>
-                    <p className="text-sm text-gray-900 dark:text-white">
+                    <p className="text-base font-semibold text-gray-900 dark:text-white">
                       {selectedPhoto.date}
                     </p>
                   </div>
 
-                  <div>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 uppercase tracking-wide mb-1">
+                  <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
+                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
                       Album
                     </p>
-                    <p className="text-sm text-gray-900 dark:text-white">
+                    <p className="text-base font-semibold text-gray-900 dark:text-white">
                       {selectedPhoto.album}
                     </p>
                   </div>
