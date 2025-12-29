@@ -38,9 +38,9 @@ export const profileData: PersonalProfile = {
       position: "Mobile Developer",
       company: "MadSoftware Technology",
       location: "Remote",
-      period: "2025 - Present",
+      period: "2025",
       description:
-        "Developing and maintaining mobile applications using React Native and Flutter. Also, developing and maintaining web applications using React and Node.js.",
+        "Developed and maintaining mobile applications using Flutter.",
       achievements: [
         "Converted and deployed the GoGym mobile app to Flutter with integrated Ruby REST APIs and PostgreSQL.",
         "Utilized BLoC, Clean Architecture, go_router, and Dio to build a scalable and maintainable codebase.",
@@ -54,25 +54,28 @@ export const profileData: PersonalProfile = {
       location: "Remote",
       period: "2023 - 2025",
       description:
-        " led the end-to-end development and technical enhancement of AviGate’s B2B booking application.",
+        "Led the end-to-end development and technical enhancement of AviGate’s B2B booking application.",
       achievements: [
         "Led the development and enhancement of AviGate’s B2B booking application, architecting a scalable Flutter and FlutterFlow solution.",
         "Built automated backend workflows using Google Cloud Functions and integrated Xendit payments via FAST API with SMTP-based email support.",
         "Managed deployments across Firebase App Distribution, Play Store, and App Store, leveraging Firestore and Crashlytics for reliability and monitoring.",
+        "Developed a dashboard web application using Next JS",
+        "Introduce Chatbot AI and RAG implementation to the project"
       ],
       type: "part-time",
     },
     {
       position: "Full Stack Developer",
-      company: "Diverse System Solutions Integrated",
+      company: "Diverse System Solutions Inc.",
       location: "Remote",
       period: "2024 - 2025",
       description:
-        "Developing and maintaining web applications using React and Node.js.",
+        "Developed and maintained full stack projects using Flutter, PHP and Laravel.",
       achievements: [
-        "Led the end-to-end development of the Emergency Response mobile app using Flutter, Laravel APIs, BLoC, and Clean Architecture, including full migration from Framework7 to Flutter.",
-        "Collaborated on UI/UX design, implemented Firebase notifications, and integrated Mapbox with Polyline tracking for real-time location features.",
-        "Managed backend data flow and database design, created UML diagrams and flowcharts, and integrated PHP-based APIs while overseeing the project as team lead.",
+        "Led the end-to-end development of the Emergency Response mobile app using Flutter, PHP APIs, BLoC, and Clean Architecture, including full migration from Framework7 to Flutter.",
+        "Design and implement UI/UX design, implemented Firebase notifications",
+        "Managed backend data flow and database design, created UML diagrams and flowcharts, and integrated PHP-based APIs.",
+        "Using Mapbox, Google Maps API, and Polyline tracking for real-time location features.",
       ],
       type: "full-time",
     },

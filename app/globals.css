@@ -24,3 +24,82 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-scroll-reverse {
+    animation: scroll-reverse 30s linear infinite;
+  }
+
+  .animate-scroll-reverse:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-scroll-infinite {
+    animation: scroll-infinite 40s linear infinite;
+  }
+
+  .animate-scroll-infinite:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-scroll-infinite-reverse {
+    animation: scroll-infinite-reverse 40s linear infinite;
+  }
+
+  .animate-scroll-infinite-reverse:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scroll-infinite {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  @keyframes scroll-infinite-reverse {
+    0% {
+      transform: translateX(-33.333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
