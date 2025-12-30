@@ -9,6 +9,8 @@ export interface PersonalProfile {
   profilePicture: string;
   email: string;
   phone: string;
+  github: string;
+  linkedin: string;
   about: string;
   education: Education[];
   experience: Experience[];
@@ -23,6 +25,8 @@ export const profileData: PersonalProfile = {
   profilePicture: "/images/profile-picture.jpg",
   email: "pajunar0@gmail.com",
   phone: "+63 968 405 9727",
+  github: "https://github.com/edilberto-pajunar",
+  linkedin: "https://www.linkedin.com/in/edilberto-pajunar-41282a184/",
   about:
     "Passionate software engineer with expertise in modern web technologies. Dedicated to creating elegant solutions and exceptional user experiences.",
   education: [
@@ -60,7 +64,7 @@ export const profileData: PersonalProfile = {
         "Built automated backend workflows using Google Cloud Functions and integrated Xendit payments via FAST API with SMTP-based email support.",
         "Managed deployments across Firebase App Distribution, Play Store, and App Store, leveraging Firestore and Crashlytics for reliability and monitoring.",
         "Developed a dashboard web application using Next JS",
-        "Introduce Chatbot AI and RAG implementation to the project"
+        "Introduce Chatbot AI and RAG implementation to the project",
       ],
       type: "part-time",
     },
