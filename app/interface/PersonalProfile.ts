@@ -1,6 +1,11 @@
 import { Education } from "./Education";
 import { Experience } from "./Experience";
 
+export interface SkillOrTool {
+  name: string;
+  icon: string | null;
+}
+
 export interface PersonalProfile {
   name: string;
   title: string;
@@ -14,8 +19,8 @@ export interface PersonalProfile {
   about: string;
   education: Education[];
   experience: Experience[];
-  skills: string[];
-  tools: string[];
+  skills: SkillOrTool[];
+  tools: SkillOrTool[];
 }
 
 export const profileData: PersonalProfile = {
@@ -112,22 +117,22 @@ export const profileData: PersonalProfile = {
     },
   ],
   skills: [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Python",
-    "PostgreSQL",
-    "Docker",
+    { name: "JavaScript", icon: "/icons/javascript.png" },
+    { name: "TypeScript", icon: "/icons/typescript.png" },
+    { name: "React", icon: "/icons/react.png" },
+    { name: "Next.js", icon: null },
+    { name: "Node.js", icon: "/icons/node.png" },
+    { name: "Python", icon: null },
+    { name: "PostgreSQL", icon: "/icons/database.png" },
+    { name: "Docker", icon: "/icons/docker.png" },
   ],
   tools: [
-    "Android Studio",
-    "iOS Simulator",
-    "Xcode",
-    "Flutter",
-    "React Native",
-    "Node.js",
-    "npm",
+    { name: "Android Studio", icon: "/icons/android.png" },
+    { name: "iOS Simulator", icon: "/icons/ios.png" },
+    { name: "Xcode", icon: "/icons/xcode.png" },
+    { name: "Flutter", icon: "/icons/flutter.png" },
+    { name: "React Native", icon: null },
+    { name: "Node.js", icon: "/icons/node.png" },
+    { name: "npm", icon: null },
   ],
 };

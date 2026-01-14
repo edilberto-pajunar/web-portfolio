@@ -31,7 +31,6 @@ export default function Page() {
         <div className="max-w-4xl mx-auto px-8 py-20">
           <div className=" rounded-3xl shadow-sm  border-gray-200 dark:border-gray-800 p-12">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-3">
-              <span className="text-5xl">📧</span>
               <span>Get In Touch</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-10">

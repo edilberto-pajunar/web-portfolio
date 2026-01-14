@@ -21,10 +21,9 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto p-8">
         <div className="mb-10">
           <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-4">
-            <span className="text-5xl">🚀</span>
             <span>My Projects</span>
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 ml-[72px]">
+          <p className="text-lg text-gray-600 dark:text-gray-400">
             Explore my latest work and side projects
           </p>
         </div>
@@ -193,24 +192,51 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href={selectedProject.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-colors text-center shadow-md"
-                  >
-                    🚀 View Live Demo
-                  </a>
-                  {selectedProject.githubLink && (
+                <div className="flex flex-col gap-4">
+                  {/* <div className="flex flex-col sm:flex-row gap-4">
                     <a
-                      href={selectedProject.githubLink}
+                      href={selectedProject.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-4 bg-gray-900 hover:bg-black dark:bg-gray-800 dark:hover:bg-gray-700 text-white rounded-2xl font-bold transition-colors text-center shadow-md"
+                      className="flex-1 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-colors text-center shadow-md"
                     >
-                      💻 View Code
+                      🚀 View Live Demo
                     </a>
+                    {selectedProject.githubLink && (
+                      <a
+                        href={selectedProject.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-4 bg-gray-900 hover:bg-black dark:bg-gray-800 dark:hover:bg-gray-700 text-white rounded-2xl font-bold transition-colors text-center shadow-md"
+                      >
+                        💻 View Code
+                      </a>
+                    )}
+                  </div> */}
+                  {(selectedProject.appStoreLink ||
+                    selectedProject.playstoreLink) && (
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      {selectedProject.appStoreLink && (
+                        <a
+                          href={selectedProject.appStoreLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 py-4 bg-black hover:bg-gray-900 dark:bg-gray-800 dark:hover:bg-gray-700 text-white rounded-2xl font-bold transition-colors text-center shadow-md"
+                        >
+                          App Store
+                        </a>
+                      )}
+                      {selectedProject.playstoreLink && (
+                        <a
+                          href={selectedProject.playstoreLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 py-4 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-bold transition-colors text-center shadow-md"
+                        >
+                          Play Store
+                        </a>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>

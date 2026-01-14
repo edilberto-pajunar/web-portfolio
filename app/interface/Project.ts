@@ -11,6 +11,8 @@ export interface Project {
   category: string;
   status: "live" | "in-progress" | "completed";
   images: string[];
+  appStoreLink: string;
+  playstoreLink: string;
 }
 
 export const projects: Project[] = [
@@ -28,6 +30,10 @@ export const projects: Project[] = [
     category: "Mobile Application Developer",
     status: "live",
     images: ["/images/gogym-1.webp", "/images/gogym-2.webp"],
+    playstoreLink:
+      "https://play.google.com/store/apps/details?id=com.ahglab.gogym&pcampaignid=web_share",
+    appStoreLink:
+      "https://apps.apple.com/ph/app/gogym-pocket-gyms/id1635698027",
   },
   {
     id: "2",
@@ -42,6 +48,10 @@ export const projects: Project[] = [
     category: "Full Stack Developer",
     status: "live",
     images: ["/images/avigate-1.webp", "/images/avigate-2.webp"],
+    playstoreLink:
+      "https://play.google.com/store/apps/details?id=com.avigate.ss&pcampaignid=web_share",
+    appStoreLink:
+      "https://apps.apple.com/ph/app/avigate-easily-sell-more/id1616465551",
   },
   {
     id: "3",
@@ -56,6 +66,9 @@ export const projects: Project[] = [
     category: "Mobile Application Developer",
     status: "live",
     images: ["/images/subscrbe-1.webp", "/images/subscrbe-2.webp"],
+    playstoreLink:
+      "https://play.google.com/store/apps/details?id=com.subscrbe.app&pcampaignid=web_share",
+    appStoreLink: "https://apps.apple.com/ph/app/subscrbe-ai/id6738798627",
   },
   {
     id: "4",
@@ -70,5 +83,9 @@ export const projects: Project[] = [
     category: "Mobile Application Developer",
     status: "live",
     images: ["/images/seedbox-1.webp", "/images/seedbox-2.webp"],
+    playstoreLink:
+      "https://play.google.com/store/apps/details?id=ph.sbx.sbx&pcampaignid=web_share",
+    appStoreLink:
+      "https://apps.apple.com/ph/app/sbx-stocks-by-seedbox/id6475809369",
   },
 ];

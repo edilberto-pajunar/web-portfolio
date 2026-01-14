@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { profileData } from "../interface/PersonalProfile";
 
 export default function WorkProfile() {
@@ -80,7 +81,6 @@ export default function WorkProfile() {
 
         <div className="py-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center justify-center gap-3">
-            <span className="text-3xl">🛠️</span>
             <span>Tools</span>
           </h2>
           <div className="relative overflow-hidden mb-12">
@@ -91,17 +91,25 @@ export default function WorkProfile() {
                 ...profileData.tools,
               ].map((tool, index) => (
                 <span
-                  key={`tool-${tool}-${index}`}
-                  className="shrink-0 text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity"
+                  key={`tool-${tool.name}-${index}`}
+                  className="shrink-0 flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity"
                 >
-                  {tool}
+                  {tool.icon && (
+                    <Image
+                      src={tool.icon}
+                      alt={tool.name}
+                      width={32}
+                      height={32}
+                      className="object-contain"
+                    />
+                  )}
+                  <span>{tool.name}</span>
                 </span>
               ))}
             </div>
           </div>
 
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center justify-center gap-3">
-            <span className="text-3xl">⚡</span>
             <span>Skills</span>
           </h2>
           <div className="relative overflow-hidden">
@@ -112,10 +120,19 @@ export default function WorkProfile() {
                 ...profileData.skills,
               ].map((skill, index) => (
                 <span
-                  key={`skill-${skill}-${index}`}
-                  className="shrink-0 text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity"
+                  key={`skill-${skill.name}-${index}`}
+                  className="shrink-0 flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity"
                 >
-                  {skill}
+                  {skill.icon && (
+                    <Image
+                      src={skill.icon}
+                      alt={skill.name}
+                      width={32}
+                      height={32}
+                      className="object-contain"
+                    />
+                  )}
+                  <span>{skill.name}</span>
                 </span>
               ))}
             </div>
